@@ -1,0 +1,52 @@
+{
+                  "type": "object",
+                  "properties": {
+                    "dt_authorizations": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "object_id": {
+                            "type": "string"
+                          },
+                          "role": {
+                            "type": "string",
+                            "enum": [
+                              "DT_VIEWER",
+                              "DT_MEMBER",
+                              "DT_ADMIN"
+                            ]
+                          },
+                          "user": {
+                            "type": "object",
+                            "properties": {
+                              "roles": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "id": {
+                                "type": "string"
+                              },
+                              "username": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "group": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }

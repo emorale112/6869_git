@@ -1,0 +1,39 @@
+{
+  "title": "error",
+  "type": "object",
+  "properties": {
+    "status_code": {
+      "$ref" : "./status_code.json"
+    },
+    "error": {
+      "type": "object",
+      "properties": {
+        "error_code": {
+          "type": "string",
+          "description": "Technical error code"
+        },
+        "message": {
+          "type": "string",
+          "description": "The descritpion of the error"
+        },
+        "fields_errors": {
+          "type": "object",
+          "description": "Presents errors that came from specific parameter fields",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string",
+                "description": "The error description from the specific parameter"
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "error_code",
+        "message"
+      ]
+    }
+  }
+}

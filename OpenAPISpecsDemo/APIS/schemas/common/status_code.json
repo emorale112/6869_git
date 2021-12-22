@@ -1,0 +1,6 @@
+{
+  "type": "number",
+  "title": "status_code",
+  "minimum": 0,
+  "additionalProperties": false
+}

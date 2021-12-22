@@ -1,0 +1,102 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "digital_twin_results",
+    "version": "1.0"
+  },
+  "paths": {
+     "/dts/versions/interfaces": {
+      "get": {
+        "summary": "Get digital twin version interfaces",
+        "description": "",
+        "operationId": "GetDTInterfaces",
+        "parameters": [
+          {
+            "name": "dt_version_id",
+            "in": "query",
+            "description": "the dt version id",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Created digital twin",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "success",
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "status_code": {
+                          "$ref": "../../schemas/common/status_code.json"
+                        },
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "dts": {
+                              "type": "array",
+                              "items": {
+                                "$ref": "../../schemas/digital_twins/interfaces/interface.json"
+                              },
+                              "description": ""
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "$ref": "../../schemas/common/error.json"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/dts/versions/export_spdx": {
+      "get": {
+        "summary": "DTVersionExportSPDXContractOpen",
+        "description": "",
+        "operationId": "DTVersionExportSPDXContractOpen",
+        "parameters": [
+          {
+            "name": "dt_version_id",
+            "in": "query",
+            "description": "the dt version id",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {},
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    }
+  }
+}

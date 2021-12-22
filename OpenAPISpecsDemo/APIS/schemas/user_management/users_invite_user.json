@@ -1,0 +1,41 @@
+{
+                  "type": "object",
+                  "properties": {
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "username": {
+                          "type": "string"
+                        },
+                        "roles": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "enum": [
+                              "SYSADMIN",
+                              "MANAGER",
+                              "MEMBER"
+                            ]
+                          }
+                        },
+                        "email": {
+                          "type": "string"
+                        },
+                        "status": {
+                          "type": "string",
+                          "enum": [
+                            "active",
+                            "pending_invite",
+                            "expired_invite"
+                          ]
+                        },
+                        "invitation_token": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }

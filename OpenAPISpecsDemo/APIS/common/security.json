@@ -1,0 +1,9 @@
+{
+  "title": "security",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    }
+  }
+}

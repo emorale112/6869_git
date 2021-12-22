@@ -1,0 +1,30 @@
+{
+  "title": "User",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The user unqiue id"
+    },
+    "username": {
+      "type": "string",
+      "description": "The user username"
+    },
+    "email": {
+      "type": "string",
+      "description": "The user email"
+    },
+    "roles": {
+      "type": "array",
+      "description": "The user roles",
+      "items": {
+        "$ref": "./role.json"
+      }
+    }
+  },
+  "required": [
+    "id",
+    "username",
+    "email"
+  ]
+}

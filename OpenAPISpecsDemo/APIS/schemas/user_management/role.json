@@ -1,0 +1,12 @@
+{
+  "type": "string",
+  "title": "role",
+  "enum": [
+    "SYSADMIN",
+    "MANAGER",
+    "ANALYST",
+    "POLICY_ADMIN",
+    "LICENSE_ADMIN"
+  ],
+  "description": "User Role"
+}

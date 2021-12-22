@@ -1,0 +1,59 @@
+{
+  "title": "Digital twin version scan",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "sub_state": {
+      "type": "string"
+    },
+    "worker_id": {
+      "type": "string"
+    },
+    "queued_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "start_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "extracted_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "finish_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "percentage_completed": {
+      "type": "number"
+    },
+    "partial_results_info": {
+     "type": "object",
+  "properties": {
+    "partial_info_types": {
+      "type": "object",
+      "properties": {
+        "credentials": {
+          "type": "object",
+  "properties": {
+    "number_of_errors": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "state": {
+      "type": "string"
+    }
+  }
+        }
+      }
+    }
+  }
+    }
+  }
+}

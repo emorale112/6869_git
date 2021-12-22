@@ -1,0 +1,39 @@
+{
+                  "type": "object",
+                  "properties": {
+                    "users": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "username": {
+                            "type": "string"
+                          },
+                          "roles": {
+                            "type": "array",
+                            "items": {
+                              "$ref": "./role.json"
+                            }
+                          },
+                          "email": {
+                            "type": "string"
+                          },
+                          "two_factor": {
+                            "type": "boolean"
+                          },
+                          "status": {
+                            "type": "string",
+                            "enum": [
+                              "active",
+                              "pending_invite",
+                              "expired_invite"
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }

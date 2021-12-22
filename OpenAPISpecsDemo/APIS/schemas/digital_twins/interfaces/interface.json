@@ -1,0 +1,29 @@
+{
+  "title": "Interface",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "category": {
+      "$ref": "./interface_category.json"
+    },
+    "info_types": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "./interface_files_interface.json"
+          },
+          {
+            "$ref": "./network_configs_interface.json"
+          },
+          {
+            "$ref": "./sw_stack_interface.json"
+          }
+        ]
+      },
+      "description": "Interface payload based on the category"
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "title": "Network configurations",
+  "type": "object",
+  "properties": {
+    "type": {
+      "enum": [
+        "network_configs"
+      ],
+      "type": "string",
+      "example": "network_configs"
+    },
+    "info": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "path": {
+            "$ref": "./interface_path.json"
+          },
+          "is_default": {
+            "type": "boolean"
+          },
+          "interfaces": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "source_path": {
+                  "$ref": "./interface_path.json"
+                },
+                "interface": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "address_family": {
+                      "type": "string"
+                    },
+                    "method": {
+                      "type": "string"
+                    },
+                    "is_virtual": {
+                      "type": "boolean"
+                    },
+                    "is_loopback": {
+                      "type": "boolean"
+                    },
+                    "options": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "description": ""
+    }
+  }
+}

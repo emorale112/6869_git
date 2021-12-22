@@ -1,0 +1,13 @@
+{
+                  "type": "object",
+                  "properties": {
+                    "location": {
+                      "type": "object",
+                      "properties": {
+                        "path": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }

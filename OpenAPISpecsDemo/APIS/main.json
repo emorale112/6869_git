@@ -1,0 +1,107 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Documentation",
+    "contact": {},
+    "version": "1.0.0",
+    "description": "API documentation of the Cybellum's Platform"
+  },
+  "servers": [
+    {
+      "url": "https://dummy-url/api/v2",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/dts/create_dt": {
+      "$ref": "./paths/digital_twins/digital_twin_management_paths.json#/paths/~1dts~1create_dt"
+    },
+    "/dts/create_dt_version": {
+      "$ref": "./paths/digital_twins/digital_twin_management_paths.json#/paths/~1dts~1create_dt_version"
+    },
+    "/dts": {
+      "$ref": "./paths/digital_twins/digital_twin_management_paths.json#/paths/~1dts"
+    },
+    "/dts/versions": {
+      "$ref": "./paths/digital_twins/digital_twin_management_paths.json#/paths/~1dts~1versions"
+    },
+    "/dts/remove_dt": {
+      "$ref": "./paths/digital_twins/digital_twin_management_paths.json#/paths/~1dts~1remove_dt"
+    },
+    "/dts/versions/interfaces": {
+      "$ref": "./paths/digital_twins/digital_twin_results_paths.json#/paths/~1dts~1versions~1interfaces"
+    },
+    "/dts/versions/export_spdx": {
+      "$ref": "./paths/digital_twins/digital_twin_results_paths.json#/paths/~1dts~1versions~1export_spdx"
+    },
+    "/dts/versions/remove_dt": {
+      "$ref": "./paths/digital_twins/digital_twin_management_paths.json#/paths/~1dts~1versions~1remove_dt"
+    },
+    "/dts/versions/clean/remove_files": {
+      "$ref": "./paths/digital_twins/digital_twin_management_paths.json#/paths/~1dts~1versions~1clean~1remove_files"
+    },
+    "/dts/manage_authorizations": {
+      "$ref": "./paths/digital_twins/digital_twin_management_paths.json#/paths/~1dts~1manage_authorizations"
+    },
+    "/dts/authorizations": {
+      "$ref": "./paths/digital_twins/digital_twin_management_paths.json#/paths/~1dts~1authorizations"
+    },
+    "/dts/versions/general_information": {
+      "$ref": "./paths/digital_twins/digital_twin_management_paths.json#/paths/~1dts~1versions~1general_information"
+    },
+    "/dts/versions/update_general_information": {
+      "$ref": "./paths/digital_twins/digital_twin_management_paths.json#/paths/~1dts~1versions~1update_general_information"
+    },
+    "/dts/authorized": {
+      "$ref": "./paths/digital_twins/digital_twin_management_paths.json#/paths/~1dts~1authorized"
+    },
+    "/dts/authorized_users": {
+      "$ref": "./paths/digital_twins/digital_twin_management_paths.json#/paths/~1dts~1authorized_users"
+    },
+    "/dts/fs_info": {
+      "$ref": "./paths/digital_twins/digital_twin_management_paths.json#/paths/~1dts~1fs_info"
+    },
+    "/users/update_user": {
+      "$ref": "./paths/user_management/user_management_paths.json#/paths/~1users~1update_user"
+    },
+    "/users": {
+      "$ref": "./paths/user_management/user_management_paths.json#/paths/~1users"
+    },
+    "/users/remove_user": {
+      "$ref": "./paths/user_management/user_management_paths.json#/paths/~1users~1remove_user"
+    },
+    "/users/update_password": {
+      "$ref": "./paths/user_management/user_management_paths.json#/paths/~1users~1update_password"
+    },
+    "/users/update_user_password": {
+      "$ref": "./paths/user_management/user_management_paths.json#/paths/~1users~1update_user_password"
+    },
+    "/users/invite_user": {
+      "$ref": "./paths/user_management/user_management_paths.json#/paths/~1users~1invite_user"
+    },
+    "/users/resend_invite_user": {
+      "$ref": "./paths/user_management/user_management_paths.json#/paths/~1users~1resend_invite_user"
+    },
+    "/users/register_user": {
+      "$ref": "./paths/user_management/user_management_paths.json#/paths/~1users~1register_user"
+    },
+    "/users/forgot_password": {
+      "$ref": "./paths/user_management/user_management_paths.json#/paths/~1users~1forgot_password"
+    },
+    "/users/reset_password": {
+      "$ref": "./paths/user_management/user_management_paths.json#/paths/~1users~1reset_password"
+    },
+    "/groups/create_group": {
+      "$ref": "./paths/user_management/group_management_paths.json#/paths/~1groups~1create_group"
+    },
+    "/groups/update_group": {
+      "$ref": "./paths/user_management/group_management_paths.json#/paths/~1groups~1update_group"
+    },
+    "/groups": {
+      "$ref": "./paths/user_management/group_management_paths.json#/paths/~1groups"
+    },
+    "/groups/remove_group": {
+      "$ref": "./paths/user_management/group_management_paths.json#/paths/~1groups~1remove_group"
+    }
+  }
+}

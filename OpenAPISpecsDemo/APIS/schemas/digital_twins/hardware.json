@@ -1,0 +1,22 @@
+{
+  "title": "Hardware",
+  "type": "object",
+  "properties": {
+    "architectures": {
+      "type": "array",
+      "items": {
+        "$ref": "./architecture.json"
+      },
+      "description": ""
+    },
+    "video": {
+      "type": "string",
+      "description": "video onformation"
+    },
+    "ram": {
+      "type": "string",
+      "description": "system ram"
+    }
+  },
+  "description": "the information related to the hardware"
+}

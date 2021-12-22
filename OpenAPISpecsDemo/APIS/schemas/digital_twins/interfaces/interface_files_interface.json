@@ -1,0 +1,31 @@
+{
+  "title": "Interface files configurations",
+  "type": "object",
+  "properties": {
+    "type": {
+      "enum": [
+        "interfaces_files"
+      ],
+      "type": "string",
+      "example": "interfaces_files"
+    },
+    "info": {
+      "type": "array",
+      "items": {
+       "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "path": {
+            "$ref": "./interface_path.json"
+          },
+          "related_function_calls": {
+            "type": "object"
+          }
+        }
+      },
+      "description": ""
+    }
+  }
+}

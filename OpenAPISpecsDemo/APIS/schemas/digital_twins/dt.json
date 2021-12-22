@@ -1,0 +1,61 @@
+{
+  "title": "Digital twin",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "component_category": {
+      "type": "string"
+    },
+    "vendor": {
+      "type": "string"
+    },
+    "model_name": {
+      "type": "string"
+    },
+    "part_number": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": ""
+    },
+    "micro_controller": {
+      "type": "boolean"
+    },
+    "created_on": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_by": {
+      "type": "string"
+    },
+    "last_modified_on": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "user_dt_permissions": {
+      "$ref": "./dt_user_permissions.json"
+    },
+    "dt_versions": {
+      "type": "array",
+      "items": {
+        "$ref": "./dt_without_version.json"
+      },
+      "description": ""
+    }
+  }
+}

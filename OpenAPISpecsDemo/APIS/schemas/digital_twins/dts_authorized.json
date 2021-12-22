@@ -1,0 +1,19 @@
+{
+                  "type": "object",
+                  "properties": {
+                    "dts": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "user_dt_permissions": {
+                            "$ref": "./dt_user_permissions.json"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }

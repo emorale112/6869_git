@@ -1,0 +1,15 @@
+{
+  "title": "Digital Twin User Permissions",
+  "type": "array",
+  "items": {
+    "type": "string",
+    "enum": [
+      "dt_work",
+      "dt_view",
+      "dt_manage"
+    ]
+  },
+  "example": [
+    "dt_work"
+  ]
+}

@@ -1,0 +1,307 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "group_management_paths",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/groups/create_group": {
+      "post": {
+        "tags": [
+          "Digital Twins"
+        ],
+        "summary": "Create Group",
+        "description": "Create Group",
+        "operationId": "CreateGroupContractClosed",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "admins",
+                  "members"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Group name"
+                  },
+                  "admins": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Ids of user"
+                  },
+                  "members": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Ids of user"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Will respond with group information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "title": "success",
+                      "type": "object",
+                      "properties": {
+                        "status_code": {
+                          "$ref": "../../schemas/common/status_code.json"
+                        },
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "group": {
+                              "$ref": "../../schemas/user_management/group.json"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "$ref": "../../schemas/common/error.json"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/groups/update_group": {
+      "post": {
+        "tags": [
+          "Digital Twins"
+        ],
+        "summary": "Update Group",
+        "description": "Update Group",
+        "operationId": "UpdateGroupContractClosed",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "filters",
+                  "updates"
+                ],
+                "properties": {
+                  "filters": {
+                    "type": "object",
+                    "required": [
+                      "group_id"
+                    ],
+                    "properties": {
+                      "group_id": {
+                        "type": "string",
+                        "description": "The group id to update"
+                      }
+                    }
+                  },
+                  "updates": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "The new group name"
+                      },
+                      "members_to_add": {
+                        "type": "string",
+                        "description": "List of ids of members to add (users only)"
+                      },
+                      "members_to_remove": {
+                        "type": "string",
+                        "description": "List of ids of members to remove (users only)"
+                      },
+                      "admins_to_add": {
+                        "type": "string",
+                        "description": "List of ids of admins to add (users only)"
+                      },
+                      "admins_to_remove": {
+                        "type": "string",
+                        "description": "List of ids of admins to remove (users only)"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Will respond with group information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "title": "success",
+                      "type": "object",
+                      "properties": {
+                        "status_code": {
+                          "$ref": "../../schemas/common/status_code.json"
+                        },
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "group": {
+                              "$ref": "../../schemas/user_management/group.json"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "$ref": "../../schemas/common/error.json"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/groups": {
+      "get": {
+        "tags": [
+          "Digital Twins"
+        ],
+        "summary": "Get Groups",
+        "description": "Get Groups",
+        "operationId": "GetGroupsContractClosed",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "description": "A specific group ids that should be filtered"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Will respond with group information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "title": "success",
+                      "type": "object",
+                      "properties": {
+                        "status_code": {
+                          "$ref": "../../schemas/common/status_code.json"
+                        },
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "groups": {
+                              "type": "array",
+                              "items": {
+                                "$ref": "../../schemas/user_management/group.json"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "$ref": "../../schemas/common/error.json"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/groups/remove_group": {
+      "delete": {
+        "tags": [
+          "Digital Twins"
+        ],
+        "summary": "Remove Group",
+        "description": "Remove Group",
+        "operationId": "RemoveGroupContractClosed",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Group id to be removed",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "title": "success",
+                      "type": "object",
+                      "properties": {
+                        "status_code": {
+                          "$ref": "../../schemas/common/status_code.json"
+                        },
+                        "data": {
+                          "type": "object",
+                          "properties": {}
+                        }
+                      }
+                    },
+                    {
+                      "$ref": "../../schemas/common/error.json"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

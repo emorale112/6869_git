@@ -1,0 +1,18 @@
+{
+  "title": "Interface Category",
+  "enum": [
+    "ethernet",
+    "wireless",
+    "bluetooth",
+    "canbus",
+    "gps",
+    "infrared",
+    "radio",
+    "cellular",
+    "usb",
+    "sms",
+    "others"
+  ],
+  "type": "string",
+  "example": "ethernet"
+}

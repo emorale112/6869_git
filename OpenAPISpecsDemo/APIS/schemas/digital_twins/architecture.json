@@ -1,0 +1,25 @@
+{
+  "title": "Architecture",
+  "type": "object",
+  "properties": {
+    "architecture_code": {
+      "type": "string"
+    },
+    "cpu_vendor": {
+      "type": "string"
+    },
+    "cpu_family": {
+      "type": "string"
+    },
+    "cpu_model": {
+      "type": "string"
+    },
+    "cpu_bit_size": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "cpu": {
+      "type": "string"
+    }
+  }
+}

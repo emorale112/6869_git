@@ -1,0 +1,341 @@
+{
+  "example1": {
+    "value": {
+      "status_code": 0,
+      "data": {
+        "interfaces": [
+          {
+            "category": "bluetooth",
+            "id": "89f9b1b1-beae-4b12-9e35-913ed2956658",
+            "info_types": [
+              {
+                "info": [
+                  {
+                    "id": "35d5a94d-b24a-421c-9c8c-a46b77e2d7f2",
+                    "path": {
+                      "id": "ac6569ff-f580-430f-8d29-22d4295452bb",
+                      "path": "interfaces_check.zip.cyunpacked/interfaces_check/etc/bluetooth/main.conf"
+                    }
+                  },
+                  {
+                    "id": "5f50b585-2dd0-4302-bc30-66c2bbf4009a",
+                    "path": {
+                      "id": "6935900f-58ff-41b6-b205-606f5c6276c2",
+                      "path": "interfaces_check.zip.cyunpacked/interfaces_check/N/bluetooth.so"
+                    }
+                  },
+                  {
+                    "id": "e4a82be7-8cfc-4f3e-a5e7-156f36f5a838",
+                    "path": {
+                      "id": "afe9cfdd-a446-4f3a-9d85-3515f4971f06",
+                      "path": "interfaces_check.zip.cyunpacked/interfaces_check/etc/bluetooth/audio.conf"
+                    }
+                  }
+                ],
+                "type": "interfaces_files"
+              },
+              {
+                "info": [
+                  {
+                    "configurations": {
+                      "General.attributeserver": "false",
+                      "General.class": 4325892,
+                      "General.debugkeys": "false",
+                      "General.defaultlinkpolicy": 15,
+                      "General.disableplugins": "network,input,mgmtops",
+                      "General.discoverabletimeout": "0",
+                      "General.discoverschedulerinterval": "30",
+                      "General.enablele": "false",
+                      "General.initiallypowered": "true",
+                      "General.name": "\"Infotainment\"",
+                      "General.nameresolving": "true",
+                      "General.pagetimeout": "16384",
+                      "General.pairabletimeout": "0",
+                      "General.rememberpowered": "true",
+                      "General.reverseservicediscovery": "true"
+                    },
+                    "id": "adf8ff9c-0f85-47dc-bcdd-2f76fd6bbc18",
+                    "path": {
+                      "id": "ac6569ff-f580-430f-8d29-22d4295452bb",
+                      "path": "interfaces_check.zip.cyunpacked/interfaces_check/etc/bluetooth/main.conf"
+                    },
+                    "sw_stack": "Bluez",
+                    "sw_stack_category": "main"
+                  },
+                  {
+                    "configurations": {
+                      "General.autoconnect": "false",
+                      "General.disable": "Control,Source,Sink,Gateway,Media,Headset",
+                      "General.master": "true",
+                      "Headset.hfp": "false",
+                      "Headset.hsp": "false",
+                      "Headset.maxconnected": "0"
+                    },
+                    "id": "eb7016c5-195e-484d-92b7-5232a536c45d",
+                    "path": {
+                      "id": "afe9cfdd-a446-4f3a-9d85-3515f4971f06",
+                      "path": "interfaces_check.zip.cyunpacked/interfaces_check/etc/bluetooth/audio.conf"
+                    },
+                    "sw_stack": "Bluez",
+                    "sw_stack_category": "audio"
+                  }
+                ],
+                "type": "sw_stack_configs"
+              },
+              {
+                "info": [
+                  {
+                    "id": "a4d7f052-a15a-4b2d-b76b-1b2441faf04e",
+                    "interfaces": [
+                      {
+                        "id": "e7b09549-f7af-4145-a5c1-0269591c964f",
+                        "interface": {
+                          "address_family": "inet",
+                          "id": "e7b09549-f7af-4145-a5c1-0269591c964f",
+                          "is_loopback": false,
+                          "is_virtual": false,
+                          "method": "static",
+                          "name": "e7b09549-f7af-4145-a5c1-0269591c964f",
+                          "options": {
+                            "address": "192.168.65.1",
+                            "netmask": "255.255.255.0",
+                            "scripts": [
+                              "up /usr/sbin/ipmasq",
+                              "down /usr/sbin/ipmasq"
+                            ]
+                          },
+                          "type": "Bluetooth"
+                        },
+                        "source_path": {
+                          "id": "91af9af9-8148-40e8-8171-96b8905d7f94",
+                          "path": "interfaces_check.zip.cyunpacked/interfaces_check/interfaces_2/etc/network/interfaces"
+                        }
+                      }
+                    ],
+                    "is_default": false,
+                    "path": {
+                      "id": "91af9af9-8148-40e8-8171-96b8905d7f94",
+                      "path": "interfaces_check.zip.cyunpacked/interfaces_check/interfaces_2/etc/network/interfaces"
+                    }
+                  }
+                ],
+                "type": "network_configs"
+              }
+            ]
+          },
+          {
+            "category": "canbus",
+            "id": "c24d7af9-fe3f-4040-93a6-dc0aec2dff73",
+            "info_types": [
+              {
+                "info": [
+                  {
+                    "id": "5fc2b988-033c-4da0-97b7-ea04112b86d6",
+                    "path": {
+                      "id": "56943d04-2b9b-4e03-bc89-9c6236f75603",
+                      "path": "interfaces_check.zip.cyunpacked/interfaces_check/N/canbus.so"
+                    }
+                  }
+                ],
+                "type": "interfaces_files"
+              }
+            ]
+          },
+          {
+            "category": "gps",
+            "id": "b4bfdeea-25f6-479d-abb8-78cb032ae0ec",
+            "info_types": [
+              {
+                "info": [
+                  {
+                    "id": "3b37b18d-6133-413b-b0d3-d8ec85e4fff3",
+                    "path": {
+                      "id": "490cbfc0-0ca9-46fc-a674-e7eeadd3cf6a",
+                      "path": "interfaces_check.zip.cyunpacked/interfaces_check/etc/gps.conf"
+                    }
+                  },
+                  {
+                    "id": "3166a685-dfe0-42d1-953b-f010c760ee5c",
+                    "path": {
+                      "id": "6b26ba68-31b6-4fd9-9d90-5b512310c929",
+                      "path": "interfaces_check.zip.cyunpacked/interfaces_check/N/gps.so"
+                    }
+                  }
+                ],
+                "type": "interfaces_files"
+              }
+            ]
+          },
+          {
+            "category": "usb",
+            "id": "7c208377-605d-4fea-9980-c938c2507d52",
+            "info_types": [
+              {
+                "info": [
+                  {
+                    "id": "02b2ed0c-0207-4347-bdda-dd42b11fb286",
+                    "path": {
+                      "id": "5598934f-32f1-4762-b040-a49a09435758",
+                      "path": "interfaces_check.zip.cyunpacked/interfaces_check/etc/rc0.d/K41usb-atm2"
+                    }
+                  },
+                  {
+                    "id": "82aa7399-8495-472d-84b5-0996d0ddaf40",
+                    "path": {
+                      "id": "182453ba-9101-4479-9880-98010e1d0303",
+                      "path": "interfaces_check.zip.cyunpacked/interfaces_check/etc/init.d/usb"
+                    }
+                  },
+                  {
+                    "id": "2e3d4b2b-eff3-452e-8919-4a7789279db4",
+                    "path": {
+                      "id": "7eeaddbe-3c94-46f2-b01e-6220b7cb1801",
+                      "path": "interfaces_check.zip.cyunpacked/interfaces_check/etc/init.d/usb-atm2"
+                    }
+                  },
+                  {
+                    "id": "7a9c805f-a0f8-45ac-9de9-a19911b6f7bd",
+                    "path": {
+                      "id": "0e25bd05-d247-4b3d-a766-6ea70f826867",
+                      "path": "interfaces_check.zip.cyunpacked/interfaces_check/etc/rcS.d/S41usb"
+                    }
+                  },
+                  {
+                    "id": "2554c6e2-870f-4240-b688-b126974e699d",
+                    "path": {
+                      "id": "0bd35b72-e3a3-4c39-9a8c-ac5bc3b40825",
+                      "path": "interfaces_check.zip.cyunpacked/interfaces_check/etc/rc1.d/K41usb-atm2"
+                    }
+                  },
+                  {
+                    "id": "0c9c1284-99ec-45c4-9d63-54abba1342e9",
+                    "path": {
+                      "id": "d4d5617c-cd42-4d22-91d3-cd855b6fab02",
+                      "path": "interfaces_check.zip.cyunpacked/interfaces_check/etc/rc6.d/K41usb-atm2"
+                    }
+                  }
+                ],
+                "type": "interfaces_files"
+              }
+            ]
+          },
+          {
+            "category": "wireless",
+            "id": "66811313-9db9-4ecb-af24-74495d0d22bf",
+            "info_types": [
+              {
+                "info": [
+                  {
+                    "id": "a4d7f052-a15a-4b2d-b76b-1b2441faf04e",
+                    "interfaces": [
+                      {
+                        "id": "0b4a9354-d88f-4343-8858-0781c222842b",
+                        "interface": {
+                          "address_family": "inet",
+                          "id": "0b4a9354-d88f-4343-8858-0781c222842b",
+                          "is_loopback": false,
+                          "is_virtual": false,
+                          "method": "dhcp",
+                          "name": "0b4a9354-d88f-4343-8858-0781c222842b",
+                          "options": {
+                            "wpa-psk": "a1b2c3d4e5",
+                            "wpa-ssid": "myssid"
+                          },
+                          "type": "Wireless"
+                        },
+                        "source_path": {
+                          "id": "91af9af9-8148-40e8-8171-96b8905d7f94",
+                          "path": "interfaces_check.zip.cyunpacked/interfaces_check/interfaces_2/etc/network/interfaces"
+                        }
+                      },
+                      {
+                        "id": "a69efa33-3857-453d-95f5-003d191c6e1c",
+                        "interface": {
+                          "address_family": "inet",
+                          "id": "a69efa33-3857-453d-95f5-003d191c6e1c",
+                          "is_loopback": false,
+                          "is_virtual": false,
+                          "method": "dhcp",
+                          "name": "a69efa33-3857-453d-95f5-003d191c6e1c",
+                          "options": {
+                            "address": "192.168.1.11",
+                            "gateway": "192.168.1.1",
+                            "netmask": "255.255.255.0",
+                            "wireless-essid": "Zelkow177",
+                            "wireless-key": "werabartekagataS",
+                            "wireless-mode": "Managed",
+                            "wireless-power": "off",
+                            "wpa-psk": "werabartekagataS",
+                            "wpa-ssid": "Zelkow177"
+                          },
+                          "type": "Wireless"
+                        },
+                        "source_path": {
+                          "id": "91af9af9-8148-40e8-8171-96b8905d7f94",
+                          "path": "interfaces_check.zip.cyunpacked/interfaces_check/interfaces_2/etc/network/interfaces"
+                        }
+                      }
+                    ],
+                    "is_default": false,
+                    "path": {
+                      "id": "91af9af9-8148-40e8-8171-96b8905d7f94",
+                      "path": "interfaces_check.zip.cyunpacked/interfaces_check/interfaces_2/etc/network/interfaces"
+                    }
+                  }
+                ],
+                "type": "network_configs"
+              }
+            ]
+          },
+          {
+            "category": "ethernet",
+            "id": "7d932eab-2de5-47f9-a539-061985a8be4f",
+            "info_types": [
+              {
+                "info": [
+                  {
+                    "id": "a4d7f052-a15a-4b2d-b76b-1b2441faf04e",
+                    "interfaces": [
+                      {
+                        "id": "38691b5c-cf8c-4995-a688-d80e8711a720",
+                        "interface": {
+                          "address_family": "inet",
+                          "id": "38691b5c-cf8c-4995-a688-d80e8711a720",
+                          "is_loopback": false,
+                          "is_virtual": false,
+                          "method": "static",
+                          "name": "38691b5c-cf8c-4995-a688-d80e8711a720",
+                          "options": {
+                            "address": "10.0.0.41",
+                            "broadcast": "10.0.0.255",
+                            "dns-domain": "acme.com",
+                            "dns-nameservers": "10.0.0.1 8.8.8.8",
+                            "dns-search": "acme.com",
+                            "gateway": "10.0.0.1",
+                            "netmask": "255.255.255.0",
+                            "network": "10.0.0.0"
+                          },
+                          "type": "Ethernet"
+                        },
+                        "source_path": {
+                          "id": "91af9af9-8148-40e8-8171-96b8905d7f94",
+                          "path": "interfaces_check.zip.cyunpacked/interfaces_check/interfaces_2/etc/network/interfaces"
+                        }
+                      }
+                    ],
+                    "is_default": false,
+                    "path": {
+                      "id": "91af9af9-8148-40e8-8171-96b8905d7f94",
+                      "path": "interfaces_check.zip.cyunpacked/interfaces_check/interfaces_2/etc/network/interfaces"
+                    }
+                  }
+                ],
+                "type": "network_configs"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

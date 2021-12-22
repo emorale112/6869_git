@@ -1,0 +1,218 @@
+{
+                  "type": "object",
+                  "properties": {
+                    "dt_version": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "created_on": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "date": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "status": {
+                          "type": "string"
+                        },
+                        "file_deletion_mode": {
+                          "type": "string"
+                        },
+                        "created_by": {
+                          "type": "string"
+                        },
+                        "last_modified_on": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "production_phase": {
+                          "type": "string"
+                        },
+                        "original_binary_size": {
+                          "type": "number"
+                        },
+                        "extracted_binary_size": {
+                          "type": "number"
+                        },
+                        "extracted_number_of_files": {
+                          "type": "number"
+                        },
+                        "original_files": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "path": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        },
+                        "private_configurations": {
+                          "type": "object",
+                          "properties": {
+                            "dt_mark": {
+                              "type": "boolean"
+                            }
+                          }
+                        },
+                        "files_deletion_mode": {
+                          "type": "string"
+                        },
+                        "dt": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "description": {
+                              "type": "string"
+                            },
+                            "component_category": {
+                              "type": "string"
+                            },
+                            "vendor": {
+                              "type": "string"
+                            },
+                            "status": {
+                              "type": "string"
+                            },
+                            "model_name": {
+                              "type": "string"
+                            },
+                            "part_number": {
+                              "type": "string"
+                            },
+                            "tags": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "micro_controller": {
+                              "type": "boolean"
+                            },
+                            "user_dt_permissions": {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "enum": [
+                                  "dt_work",
+                                  "dt_view",
+                                  "dt_manage"
+                                ]
+                              }
+                            }
+                          }
+                        },
+                        "scan": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "status": {
+                              "type": "string"
+                            },
+                            "sub_status": {
+                              "type": "string"
+                            },
+                            "queued_time": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "start_time": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "finish_time": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "percentage_completed": {
+                              "type": "number"
+                            }
+                          }
+                        },
+                        "hardware": {
+                          "type": "object",
+                          "properties": {
+                            "architectures": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "architecture_code": {
+                                    "type": "string"
+                                  },
+                                  "cpu_vendor": {
+                                    "type": "string"
+                                  },
+                                  "cpu_family": {
+                                    "type": "string"
+                                  },
+                                  "cpu_model": {
+                                    "type": "string"
+                                  },
+                                  "cpu_bit_size": {
+                                    "type": "string"
+                                  },
+                                  "cpu": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            },
+                            "video": {
+                              "type": "string"
+                            },
+                            "ram": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "operating_systems": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "name": {
+                                "type": "string"
+                              },
+                              "version": {
+                                "type": "string"
+                              },
+                              "patch_level": {
+                                "type": "string"
+                              },
+                              "service_pack": {
+                                "type": "string"
+                              },
+                              "kernel": {
+                                "type": "string"
+                              },
+                              "kernel_version": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }

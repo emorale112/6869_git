@@ -1,0 +1,75 @@
+{
+  "title": "Digital Twin Version",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_on": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_by": {
+      "type": "string"
+    },
+    "last_modified_on": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "production_phase": {
+      "type": "string"
+    },
+    "file_deletion_mode": {
+      "type": "string"
+    },
+    "external_id": {
+      "type": "string"
+    },
+    "original_files": {
+      "type": "array",
+      "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            }
+          }
+      },
+      "description": ""
+    },
+    "dt": {
+      "$ref": "./dt_without_version.json"
+    },
+    "scan": {
+      "$ref": "./dt_scan.json"
+    },
+    "hardware": {
+      "$ref": "./hardware.json"
+    },
+    "operating_systems": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          }
+        }
+      },
+      "description": ""
+    }
+  }
+}

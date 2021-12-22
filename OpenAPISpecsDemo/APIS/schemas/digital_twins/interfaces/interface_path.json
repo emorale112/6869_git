@@ -1,0 +1,12 @@
+{
+  "title": "Path",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string"
+    }
+  }
+}

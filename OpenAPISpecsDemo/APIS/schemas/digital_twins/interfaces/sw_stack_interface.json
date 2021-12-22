@@ -1,0 +1,37 @@
+{
+  "title": "Software stack configurations",
+  "type": "object",
+  "properties": {
+    "type": {
+      "enum": [
+        "sw_stack_configs"
+      ],
+      "type": "string",
+      "example": "sw_stack_configs"
+    },
+    "info": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "path": {
+            "$ref": "./interface_path.json"
+          },
+          "sw_stack": {
+            "type": "string"
+          },
+          "sw_stack_category": {
+            "type": "string"
+          },
+          "configurations": {
+            "type": "object"
+          }
+        }
+      },
+      "description": ""
+    }
+  }
+}

@@ -1,0 +1,818 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "user_management_paths",
+		"version": "1.0"
+	},
+	"servers": [{
+		"url": "http://localhost:3000"
+	}],
+	"paths": {
+		"/users/create_user": {
+			"post": {
+				"tags": [
+					"Digital Twins"
+				],
+				"summary": "Create a user",
+				"description": "Creates a new user",
+				"operationId": "CreateUser",
+				"parameters": [],
+				"requestBody": {
+					"description": "User information",
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"username": {
+										"type": "string",
+										"description": "The username of the user"
+									},
+									"password": {
+										"type": "string",
+										"description": "The password of the user"
+									},
+									"roles": {
+										"type": "array",
+										"items": {
+											"$ref": "../../schemas/user_management/role.json"
+										}
+									},
+									"email": {
+										"type": "string",
+										"description": "The email of the user"
+									}
+								},
+								"required": [
+									"username",
+									"password",
+									"roles"
+								]
+							}
+						}
+					},
+					"required": false
+				},
+				"responses": {
+					"200": {
+						"description": "Created user",
+						"content": {
+							"application/json": {
+								"schema": {
+									"oneOf": [{
+											"title": "success",
+											"type": "object",
+											"properties": {
+												"status_code": {
+													"$ref": "../../schemas/common/status_code.json"
+												},
+												"data": {
+													"type": "object",
+													"properties": {
+														"user": {
+															"$ref": "../../schemas/user_management/user.json"
+														}
+													}
+												}
+											}
+										},
+										{
+											"$ref": "../../schemas/common/error.json"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"deprecated": false
+			}
+		},
+		
+		"/users/update_user": {
+			"post": {
+				"tags": [
+					"Digital Twins"
+				],
+				"summary": "Update User",
+				"description": "Update User",
+				"operationId": "UpdateUserContractClosed",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"filters": {
+										"type": "object",
+										"required": [
+											"user_id"
+										],
+										"properties": {
+											"user_id": {
+												"type": "string",
+												"description": "The user id to update"
+											}
+										}
+									},
+									"updates": {
+										"type": "object",
+										"properties": {
+											"username": {
+												"type": "string",
+												"description": "The new username"
+											},
+											"roles": {
+												"type": "array",
+												"items": {
+													"type": "string",
+													"enum": [
+														"SYSADMIN",
+														"MANAGER",
+														"MEMBER"
+													]
+												},
+												"description": "The new user set of roles"
+											},
+											"email": {
+												"type": "string",
+												"description": "User email"
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Will respond with the updated user information",
+						"content": {
+							"application/json": {
+								"schema": {
+									"oneOf": [{
+											"title": "success",
+											"type": "object",
+											"properties": {
+												"status_code": {
+													"$ref": "../../schemas/common/status_code.json"
+												},
+												"data": {
+													"type": "object",
+													"properties": {
+														"user": {
+															"$ref": "../../schemas/user_management/user.json"
+														}
+													}
+												}
+											}
+										},
+										{
+											"$ref": "../../schemas/common/error.json"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/users": {
+			"get": {
+				"tags": [
+					"Digital Twins"
+				],
+				"summary": "Get Users",
+				"description": "Get Users",
+				"operationId": "GetUsersContractClosed",
+				"parameters": [{
+					"name": "user_ids",
+					"in": "query",
+					"schema": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					},
+					"description": "Specific user ids return data about"
+				}],
+				"responses": {
+					"200": {
+						"description": "List of users",
+						"content": {
+							"application/json": {
+								"schema": {
+									"oneOf": [{
+											"title": "success",
+											"type": "object",
+											"properties": {
+												"status_code": {
+													"$ref": "../../schemas/common/status_code.json"
+												},
+												"data": {
+													"$ref": "../../schemas/user_management/users.json"
+												}
+											}
+										},
+										{
+											"$ref": "../../schemas/common/error.json"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/users/remove_user": {
+			"delete": {
+				"tags": [
+					"Digital Twins"
+				],
+				"summary": "Remove User",
+				"description": "Remove User",
+				"operationId": "RemoveUserContractClosed",
+				"parameters": [{
+					"name": "user_id",
+					"in": "query",
+					"schema": {
+						"type": "string"
+					},
+					"description": "User id to be removed",
+					"required": true
+				}],
+				"responses": {
+					"200": {
+						"description": "User Removed",
+						"content": {
+							"application/json": {
+								"schema": {
+									"oneOf": [{
+											"title": "success",
+											"type": "object",
+											"properties": {
+												"status_code": {
+													"$ref": "../../schemas/common/status_code.json"
+												},
+												"data": {
+													"type": "object",
+													"properties": {}
+												}
+											}
+										},
+										{
+											"$ref": "../../schemas/common/error.json"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/users/update_password": {
+			"post": {
+				"tags": [
+					"Digital Twins"
+				],
+				"summary": "Update Password",
+				"description": "Update Password",
+				"operationId": "UpdatePasswordContractClosed",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"required": [
+									"current_password",
+									"new_password"
+								],
+								"properties": {
+									"current_password": {
+										"type": "string",
+										"description": "Own logged in user password"
+									},
+									"new_password": {
+										"type": "object",
+										"description": "New password"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Will respond with the updated user information",
+						"content": {
+							"application/json": {
+								"schema": {
+									"oneOf": [{
+											"title": "success",
+											"type": "object",
+											"properties": {
+												"status_code": {
+													"$ref": "../../schemas/common/status_code.json"
+												},
+												"data": {
+													"type": "object",
+													"properties": {
+														"user": {
+															"$ref": "../../schemas/user_management/user.json"
+														}
+													}
+												}
+											}
+										},
+										{
+											"$ref": "../../schemas/common/error.json"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/users/update_user_password": {
+			"post": {
+				"tags": [
+					"Digital Twins"
+				],
+				"summary": "Update User Password",
+				"description": "Update User Password",
+				"operationId": "UpdateUserPasswordContractClosed",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"required": [
+									"user_id",
+									"new_password"
+								],
+								"properties": {
+									"user_id": {
+										"type": "string",
+										"description": "User id"
+									},
+									"new_password": {
+										"type": "object",
+										"description": "New user password"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Will respond with updated user",
+						"content": {
+							"application/json": {
+								"schema": {
+									"oneOf": [{
+											"title": "success",
+											"type": "object",
+											"properties": {
+												"status_code": {
+													"$ref": "../../schemas/common/status_code.json"
+												},
+												"data": {
+													"type": "object",
+													"properties": {
+														"user": {
+															"$ref": "../../schemas/user_management/user.json"
+														}
+													}
+												}
+											}
+										},
+										{
+											"$ref": "../../schemas/common/error.json"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/users/invite_user": {
+			"post": {
+				"tags": [
+					"Digital Twins"
+				],
+				"summary": "Invite User",
+				"description": "Invite User",
+				"operationId": "InviteUserContractClosed",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"required": [
+									"username",
+									"roles"
+								],
+								"properties": {
+									"username": {
+										"type": "string",
+										"description": "Login username"
+									},
+									"roles": {
+										"type": "array",
+										"items": {
+											"type": "string",
+											"enum": [
+												"SYSADMIN",
+												"MANAGER",
+												"MEMBER"
+											]
+										},
+										"description": "A list of one of the values of SYSADMIN, MANAGER, MEMBER"
+									},
+									"email": {
+										"type": "string",
+										"description": "User email. No email will be sent and only link generated when email is not provided."
+									},
+									"language": {
+										"type": "string",
+										"description": "Invited user language (do not implement this currently it is for future language support)"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Will respond with updated user",
+						"content": {
+							"application/json": {
+								"schema": {
+									"oneOf": [{
+											"title": "success",
+											"type": "object",
+											"properties": {
+												"status_code": {
+													"$ref": "../../schemas/common/status_code.json"
+												},
+												"data": {
+													"$ref": "../../schemas/user_management/users_invite_user.json"	
+												}
+											}
+										},
+										{
+											"$ref": "../../schemas/common/error.json"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/users/resend_invite_user": {
+			"post": {
+				"tags": [
+					"Digital Twins"
+				],
+				"summary": "Resend invite User",
+				"description": "Resend invite User",
+				"operationId": "ResendinviteUserContractClosed",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"required": [
+									"user_id"
+								],
+								"properties": {
+									"user_id": {
+										"type": "string",
+										"description": "User id to resend the invitation"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Will respond with updated user",
+						"content": {
+							"application/json": {
+								"schema": {
+									"oneOf": [{
+											"title": "success",
+											"type": "object",
+											"properties": {
+												"status_code": {
+													"$ref": "../../schemas/common/status_code.json"
+												},
+												"data": {
+													"$ref": "../../schemas/user_management/users_invite_user.json"	
+												}
+											}
+										},
+										{
+											"$ref": "../../schemas/common/error.json"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/users/register_user": {
+			"post": {
+				"tags": [
+					"Digital Twins"
+				],
+				"summary": "Register User",
+				"description": "Register User",
+				"operationId": "RegisterUserContractClosed",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"required": [
+									"filters",
+									"updates"
+								],
+								"properties": {
+									"filters": {
+										"type": "object",
+										"required": [
+											"token"
+										],
+										"properties": {
+											"token": {
+												"type": "string",
+												"description": "Token to verify this is the user that was invited"
+											}
+										}
+									},
+									"updates": {
+										"type": "object",
+										"required": [
+											"new_password"
+										],
+										"properties": {
+											"new_password": {
+												"type": "string",
+												"description": "User new password"
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Tokens to use to have the user logged in",
+						"content": {
+							"application/json": {
+								"schema": {
+									"oneOf": [{
+											"title": "success",
+											"type": "object",
+											"properties": {
+												"status_code": {
+													"$ref": "../../schemas/common/status_code.json"
+												},
+												"data": {
+													"$ref": "../../schemas/user_management/users_register_user.json"
+												}
+											}
+										},
+										{
+											"$ref": "../../schemas/common/error.json"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/users/forgot_password": {
+			"post": {
+				"tags": [
+					"Digital Twins"
+				],
+				"summary": "Forgot password",
+				"description": "Forgot password",
+				"operationId": "ForgotpasswordContractClosed",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"required": [
+									"email"
+								],
+								"properties": {
+									"email": {
+										"type": "string"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"oneOf": [{
+											"title": "success",
+											"type": "object",
+											"properties": {
+												"status_code": {
+													"$ref": "../../schemas/common/status_code.json"
+												},
+												"data": {
+													"type": "object",
+													"properties": {}
+												}
+											}
+										},
+										{
+											"$ref": "../../schemas/common/error.json"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/users/reset_password": {
+			"post": {
+				"tags": [
+					"Digital Twins"
+				],
+				"summary": "Reset password",
+				"description": "Reset password",
+				"operationId": "ResetpasswordContractClosed",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"required": [
+									"filters",
+									"updates"
+								],
+								"properties": {
+									"filters": {
+										"type": "object",
+										"required": [
+											"token"
+										],
+										"properties": {
+											"token": {
+												"type": "string",
+												"description": "Token to verify the user"
+											}
+										}
+									},
+									"updates": {
+										"type": "object",
+										"required": [
+											"new_password"
+										],
+										"properties": {
+											"new_password": {
+												"type": "string",
+												"description": "User new password"
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Will respond with the updated user information",
+						"content": {
+							"application/json": {
+								"schema": {
+									"oneOf": [{
+											"title": "success",
+											"type": "object",
+											"properties": {
+												"status_code": {
+													"$ref": "../../schemas/common/status_code.json"
+												},
+												"data": {
+													"type": "object",
+													"properties": {
+														"user": {
+															"$ref": "../../schemas/user_management/user.json"
+														}
+													}
+												}
+											}
+										},
+										{
+											"$ref": "../../schemas/common/error.json"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"deprecated": false
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"User": {
+				"title": "User",
+				"type": "object",
+				"description": "",
+				"x-examples": {
+					"Alice Smith": {
+						"id": 142,
+						"firstName": "Alice",
+						"lastName": "Smith",
+						"email": "alice.smith@gmail.com",
+						"dateOfBirth": "1997-10-31",
+						"emailVerified": true,
+						"signUpDate": "2019-08-24"
+					}
+				},
+				"properties": {
+					"id": {
+						"type": "integer",
+						"description": "Unique identifier for the given user."
+					},
+					"firstName": {
+						"type": "string"
+					},
+					"lastName": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string",
+						"format": "email"
+					},
+					"dateOfBirth": {
+						"type": "string",
+						"format": "date",
+						"example": "1997-10-31"
+					},
+					"emailVerified": {
+						"type": "boolean",
+						"description": "Set to true if the user's email has been verified."
+					},
+					"createDate": {
+						"type": "string",
+						"format": "date",
+						"description": "The date that the user was created."
+					}
+				},
+				"required": [
+					"id",
+					"firstName",
+					"lastName",
+					"email",
+					"emailVerified"
+				]
+			}
+		}
+	}
+}

@@ -1,0 +1,1173 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "digital_twin_managmeent",
+		"version": "1.0",
+		"description": "Digital twin management APIs"
+	},
+	"paths": {
+		"/dts/create_dt": {
+			"post": {
+				"tags": [
+					"Digital Twins"
+				],
+				"summary": "Create a digital twin",
+				"description": "Creates a new digital twin",
+				"operationId": "CreateDTDevelopContractClosed",
+				"parameters": [],
+				"requestBody": {
+					"description": "",
+					"content": {
+						"application/json": {
+							"schema": {
+								"required": [
+									"name",
+									"business_unit",
+									"client",
+									"version_info"
+								],
+								"type": "object",
+								"properties": {
+									"creation_type": {
+										"type": "string",
+										"description": "import_from_cpes_list , create_from_firmware, create_manually (the create manually and create from firmware are identified implictly from the urls and files parameters like today)"
+									},
+									"name": {
+										"type": "string",
+										"description": "the name of the digital twin"
+									},
+									"description": {
+										"type": "string",
+										"description": "the digital twin description"
+									},
+									"component_category": {
+										"type": "string",
+										"description": "the component category. If not set - we be assigned to the default category"
+									},
+									"vendor": {
+										"type": "string",
+										"description": "the vendor of the product"
+									},
+									"model_name": {
+										"type": "string",
+										"description": "the model name of the product"
+									},
+									"part_number": {
+										"type": "string",
+										"description": "the part number of the product"
+									},
+									"business_unit": {
+										"type": "string",
+										"description": "the business unit of the product"
+									},
+									"client": {
+										"type": "string",
+										"description": "the client of the product"
+									},
+									"tags": {
+										"type": "array",
+										"items": {
+											"type": "string"
+										},
+										"description": "relevant tags for the dt"
+									},
+									"micro_controller": {
+										"type": "boolean",
+										"description": "set to true if the product is a micro-controller - otherwise false by default."
+									},
+									"version_info": {
+										"type": "object",
+										"properties": {
+											"name": {
+												"type": "string",
+												"description": "the name of the DT Version"
+											},
+											"hardware": {
+												"$ref": "../../schemas/digital_twins/hardware.json"
+											},
+											"date": {
+												"type": "string",
+												"description": "the date of the DT Version - if not set will be defaulted to the current time",
+												"format": "date-time"
+											},
+											"production_phase": {
+												"type": "string",
+												"description": "sets the production phase state of the dt (one of Design, Development, Production, Phase-out). The default is development"
+											},
+											"external_id": {
+												"type": "string",
+												"description": "an external id field that will be supplied by the customer"
+											},
+											"operating systems": {
+												"type": "array",
+												"items": {
+													"required": [
+														"name"
+													],
+													"type": "object",
+													"properties": {
+														"name": {
+															"type": "string"
+														},
+														"version": {
+															"type": "string"
+														}
+													},
+													"description": "operating systems of the digital twin version"
+												}
+											}
+										}
+									},
+									"urls": {
+										"type": "string",
+										"description": "files to upload from a URL to the DT - in case this field is set the system will ignore the 'files' parameter. otherwise it will look for the files in the 'files' parameter"
+									},
+									"files": {
+										"type": "string",
+										"description": "files to upload for the DT created version",
+										"format": "binary"
+									},
+									"gitlog_archive_file": {
+										"type": "string",
+										"description": "the git log archive file",
+										"format": "binary"
+									}
+								}
+							}
+						}
+					},
+					"required": false
+				},
+				"responses": {
+					"200": {
+						"description": "Created digital twin",
+						"content": {
+							"application/json": {
+								"schema": {
+									"oneOf": [{
+											"title": "success",
+											"type": "object",
+											"properties": {
+												"status_code": {
+													"$ref": "../../schemas/common/status_code.json"
+												},
+												"data": {
+													"type": "object",
+													"properties": {
+														"dt": {
+															"$ref": "../../schemas/digital_twins/dt.json"
+														}
+													}
+												}
+											}
+										},
+										{
+											"$ref": "../../schemas/common/error.json"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/dts/create_dt_version": {
+			"post": {
+				"tags": [
+					"Digital Twins"
+				],
+				"summary": "Create digital twin version",
+				"description": "Creates a new digital twin version to the supplied digital twin",
+				"operationId": "DTVersionDevelopContractClosed",
+				"parameters": [],
+				"requestBody": {
+					"description": "",
+					"content": {
+						"application/json": {
+							"schema": {
+								"required": [
+									"dt_id",
+									"name"
+								],
+								"type": "object",
+								"properties": {
+									"dt_id": {
+										"type": "string",
+										"description": "the referenced digital twin id to which you want to add a new version"
+									},
+									"name": {
+										"type": "string",
+										"description": "the name of the digital twin"
+									},
+									"description": {
+										"type": "string",
+										"description": "the dt description"
+									},
+									"date": {
+										"type": "string",
+										"description": "the date of the digital twin - if not set will be defaulted to the current time"
+									},
+									"production_phase": {
+										"type": "string",
+										"description": "sets the production phase state of the dt. The default value will will be \"development\""
+									},
+									"hardware": {
+										"$ref": "../../schemas/digital_twins/hardware.json"
+									},
+									"operating systems": {
+										"type": "array",
+										"items": {
+											"required": [
+												"name"
+											],
+											"type": "object",
+											"properties": {
+												"name": {
+													"type": "string"
+												},
+												"version": {
+													"type": "string"
+												}
+											}
+										},
+										"description": "operating systems of the digital twin version"
+									},
+									"urls": {
+										"type": "string",
+										"description": "files to upload from a URL to the DT - in case this field is set the system will ignore the 'files' parameter. otherwise it will look for the files in the 'files' parameter"
+									},
+									"files": {
+										"type": "string",
+										"description": "files to upload for the DT created version",
+										"format": "binary"
+									},
+									"creation_type": {
+										"type": "string",
+										"description": "import_from_cpes_list , create_from_firmware, create_manually (the create manually and create from firmware are identified implictly from the urls and files parameters like today)"
+									},
+									"gitlog_archive_file": {
+										"type": "string",
+										"description": "the git log archive file",
+										"format": "binary"
+									},
+									"external_id": {
+										"type": "string",
+										"description": "the external id that will be supplied by the customer"
+									}
+								}
+							}
+						}
+					},
+					"required": false
+				},
+				"responses": {
+					"200": {
+						"description": "Created digital twin version",
+						"content": {
+							"application/json": {
+								"schema": {
+									"title": "success",
+									"oneOf": [{
+											"type": "object",
+											"properties": {
+												"status_code": {
+													"$ref": "../../schemas/common/status_code.json"
+												},
+												"data": {
+													"type": "object",
+													"properties": {
+														"dt_version": {
+															"$ref": "../../schemas/digital_twins/dt_version.json"
+														}
+													}
+												}
+											}
+										},
+										{
+											"$ref": "../../schemas/common/error.json"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/dts": {
+			"get": {
+				"tags": [
+					"Digital Twins"
+				],
+				"summary": "Gets digital twins",
+				"description": "Returns a list of the digital twins",
+				"operationId": "GetDTsContractClosed",
+				"parameters": [{
+						"name": "dt_ids",
+						"in": "query",
+						"description": "a dt ids filters",
+						"style": "form",
+						"explode": true,
+						"schema": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						}
+					},
+					{
+						"name": "dt_version_statuses",
+						"in": "query",
+						"description": "a list of version statuses that will return only the versions with that statuses for each one of the DTs",
+						"style": "form",
+						"explode": true,
+						"schema": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Created digital twin",
+						"content": {
+							"application/json": {
+								"schema": {
+									"title": "success",
+									"oneOf": [{
+											"type": "object",
+											"properties": {
+												"status_code": {
+													"$ref": "../../schemas/common/status_code.json"
+												},
+												"data": {
+													"type": "object",
+													"properties": {
+														"dts": {
+															"type": "array",
+															"items": {
+																"$ref": "../../schemas/digital_twins/dt.json"
+															},
+															"description": ""
+														}
+													}
+												}
+											}
+										},
+										{
+											"$ref": "../../schemas/common/error.json"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/dts/versions": {
+			"get": {
+				"tags": [
+					"Digital Twins"
+				],
+				"summary": "Get digital twin versions",
+				"description": "Get digital twin versions",
+				"operationId": "GetDTsVersionsContractClosed",
+				"parameters": [{
+						"name": "dt_version_ids",
+						"in": "query",
+						"description": "a list of the dt version ids that should be returned",
+						"style": "form",
+						"explode": true,
+						"schema": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						}
+					},
+					{
+						"name": "dt_ids",
+						"in": "query",
+						"description": "the list of the dt ids that want to filter on",
+						"style": "form",
+						"explode": true,
+						"schema": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						}
+					},
+					{
+						"name": "dt_version_statuses",
+						"in": "query",
+						"description": "a list of the statuses of the dt version",
+						"style": "form",
+						"explode": true,
+						"schema": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						}
+					},
+					{
+						"name": "extended",
+						"in": "query",
+						"description": "the flag is set to True by default - set to False if you want to have a more short information",
+						"style": "form",
+						"explode": true,
+						"schema": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Created digital twin version",
+						"content": {
+							"application/json": {
+								"schema": {
+									"title": "success",
+									"oneOf": [{
+											"type": "object",
+											"properties": {
+												"status_code": {
+													"$ref": "../../schemas/common/status_code.json"
+												},
+												"data": {
+													"type": "array",
+													"items": {
+														"$ref": "../../schemas/digital_twins/dt_version.json"
+													}
+												}
+											}
+										},
+										{
+											"$ref": "../../schemas/common/error.json"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/dts/remove_dt": {
+			"delete": {
+				"tags": [
+					"Digital Twins"
+				],
+				"summary": "Removes digital twin",
+				"description": "Removes the given digital twin",
+				"operationId": "RemoveDTContractOpen",
+				"parameters": [{
+					"name": "dt_id",
+					"in": "query",
+					"description": "digital twin id to be removed",
+					"required": true,
+					"style": "form",
+					"explode": true,
+					"schema": {
+						"type": "string"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "Removed digital twin version",
+						"content": {
+							"application/json": {
+								"schema": {
+									"title": "success",
+									"oneOf": [{
+											"type": "object",
+											"properties": {
+												"status_code": {
+													"$ref": "../../schemas/common/status_code.json"
+												},
+												"data": {
+													"type": "object",
+													"properties": {}
+												}
+											}
+										},
+										{
+											"$ref": "../../schemas/common/error.json"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/dts/versions/remove_dt": {
+			"delete": {
+				"tags": [
+					"Digital Twins"
+				],
+				"summary": "Remove DT Version",
+				"description": "Remove DT Version",
+				"operationId": "RemoveDTVersionContractOpen",
+				"parameters": [{
+					"name": "dt_version_id",
+					"in": "query",
+					"description": "The DT version id",
+					"schema": {
+						"type": "string"
+					},
+					"required": true
+				}],
+				"responses": {
+					"200": {
+						"description": "Removed digital twin version",
+						"content": {
+							"application/json": {
+								"schema": {
+									"title": "success",
+									"oneOf": [{
+											"type": "object",
+											"properties": {
+												"status_code": {
+													"$ref": "../../schemas/common/status_code.json"
+												},
+												"data": {
+													"type": "object",
+													"properties": {}
+												}
+											}
+										},
+										{
+											"$ref": "../../schemas/common/error.json"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/dts/versions/clean/remove_files": {
+			"post": {
+				"tags": [
+					"Digital Twins"
+				],
+				"summary": "DT Version Clean Files",
+				"description": "DT Version Clean Files",
+				"operationId": "DTVersionCleanFilesContractOpen",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"required": [
+									"dt_version_id",
+									"mode"
+								],
+								"properties": {
+									"dt_version_id": {
+										"type": "string",
+										"description": "The dt version id"
+									},
+									"mode": {
+										"type": "string",
+										"description": "One of the files deletion modes: [\"all_files\", \"extracted_files\"]",
+										"enum": [
+											"all_files",
+											"extracted_files"
+										]
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Files Cleaned",
+						"content": {
+							"application/json": {
+								"schema": {
+									"title": "success",
+									"oneOf": [{
+											"type": "object",
+											"properties": {
+												"status_code": {
+													"$ref": "../../schemas/common/status_code.json"
+												},
+												"data": {
+													"type": "object",
+													"properties": {}
+												}
+											}
+										},
+										{
+											"$ref": "../../schemas/common/error.json"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/dts/manage_authorizations": {
+			"post": {
+				"tags": [
+					"Digital Twins"
+				],
+				"summary": "Manage DT Authorizations",
+				"description": "Manage DT Authorizations",
+				"operationId": "ManageDTAuthorizationsContractOpen",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"required": [
+									"dt_id"
+								],
+								"properties": {
+									"dt_id": {
+										"type": "string",
+										"description": "The requested dt id"
+									},
+									"objects_to_add": {
+										"type": "object",
+										"description": "Specify a list of objects that holds the user or groups ids and their roles that should be added to the dt authorizations, in case you are supplying an object that is already exists in the dt authorizations - it's role will be overridden.",
+										"required": [
+											"object_id"
+										],
+										"properties": {
+											"object_id": {
+												"type": "string",
+												"description": "The object id to add (the id of the user or group that should be added)"
+											},
+											"role": {
+												"type": "string",
+												"description": "The role of the assigned object : [\"DT_ADMIN\", \"DT_MEMBER\", \"DT_VIEWER\"]",
+												"enum": [
+													"DT_ADMIN",
+													"DT_MEMBER",
+													"DT_VIEWER"
+												]
+											}
+										}
+									},
+									"object_ids_to_remove": {
+										"type": "array",
+										"items": {
+											"type": "string"
+										},
+										"description": "List of the objects ids of users or groups that should be removed from the dt authorizations"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Created digital twin version",
+						"content": {
+							"application/json": {
+								"schema": {
+									"title": "success",
+									"oneOf": [{
+											"type": "object",
+											"properties": {
+												"status_code": {
+													"$ref": "../../schemas/common/status_code.json"
+												},
+												"data": {
+													"$ref": "../../schemas/digital_twins/dts_authorizations.json"
+												}
+											}
+										},
+										{
+											"$ref": "../../schemas/common/error.json"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/dts/authorizations": {
+			"get": {
+				"tags": [
+					"Digital Twins"
+				],
+				"summary": "Get DT Authorizations",
+				"description": "Get DT Authorizations",
+				"operationId": "GetDTAuthorizationsContractOpen",
+				"parameters": [{
+					"name": "dt_id",
+					"in": "query",
+					"description": "The requested dt id",
+					"schema": {
+						"type": "string"
+					},
+					"required": true
+				}],
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"title": "success",
+									"oneOf": [{
+											"type": "object",
+											"properties": {
+												"status_code": {
+													"$ref": "../../schemas/common/status_code.json"
+												},
+												"data": {
+													"$ref": "../../schemas/digital_twins/dts_authorizations.json"
+												}
+											}
+										},
+										{
+											"$ref": "../../schemas/common/error.json"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/dts/versions/general_information": {
+			"get": {
+				"tags": [
+					"Digital Twins"
+				],
+				"summary": "Get DT Version General Information",
+				"description": "Get DT Version General Information",
+				"operationId": "GetDTVersionGeneralInformationContractOpen",
+				"parameters": [{
+					"name": "dt_version_id",
+					"in": "query",
+					"description": "the id of the digital twin version",
+					"schema": {
+						"type": "string"
+					},
+					"required": true
+				}],
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"title": "success",
+									"oneOf": [{
+											"type": "object",
+											"properties": {
+												"status_code": {
+													"$ref": "../../schemas/common/status_code.json"
+												},
+												"data": {
+													"$ref": "../../schemas/digital_twins/dts_versions_general_information.json"
+												}
+											}
+										},
+										{
+											"$ref": "../../schemas/common/error.json"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/dts/versions/update_general_information": {
+			"post": {
+				"tags": [
+					"Digital Twins"
+				],
+				"summary": "Update DT Version General Information",
+				"description": "Update DT Version General Information",
+				"operationId": "UpdateDTVersionGeneralInformationContractOpen",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"required": [
+									"filters",
+									"updates"
+								],
+								"properties": {
+									"filters": {
+										"type": "object",
+										"required": [
+											"dt_version_id"
+										],
+										"properties": {
+											"dt_version_id": {
+												"type": "string",
+												"description": "The version id"
+											}
+										}
+									},
+									"updates": {
+										"type": "object",
+										"properties": {
+											"dt": {
+												"type": "object",
+												"properties": {
+													"name": {
+														"type": "string",
+														"description": "DT name (will affect all DTs sharing this product)"
+													},
+													"description": {
+														"type": "string",
+														"description": "DT description"
+													},
+													"component_category": {
+														"type": "string",
+														"description": "DT type"
+													},
+													"tags": {
+														"type": "array",
+														"items": {
+															"type": "string"
+														},
+														"description": "DT tags"
+													},
+													"model_name": {
+														"type": "string",
+														"description": "DT name"
+													},
+													"part_number": {
+														"type": "string",
+														"description": "DT number"
+													},
+													"vendor": {
+														"type": "string",
+														"description": "DT vendor"
+													},
+													"hardware": {
+														"type": "object",
+														"properties": {
+															"main_architecture": {
+																"type": "object",
+																"properties": {
+																	"architecture_code": {
+																		"type": "string",
+																		"description": "The architecture code"
+																	},
+																	"cpu_vendor": {
+																		"type": "string",
+																		"description": "The cpu vendor"
+																	},
+																	"cpu_model": {
+																		"type": "string",
+																		"description": "The cpu model"
+																	},
+																	"cpu_family": {
+																		"type": "string",
+																		"description": "The cpu family"
+																	},
+																	"cpu_bit_size": {
+																		"type": "string",
+																		"description": "The cpu bit size"
+																	},
+																	"cpu": {
+																		"type": "string",
+																		"description": "The cpu"
+																	}
+																}
+															},
+															"video": {
+																"type": "string",
+																"description": "The video"
+															},
+															"ram": {
+																"type": "string",
+																"description": "The ram"
+															}
+														}
+													}
+												}
+											},
+											"production_phase": {
+												"type": "string",
+												"description": "Production phase key"
+											},
+											"name": {
+												"type": "string",
+												"description": "DT version name"
+											},
+											"date": {
+												"type": "string",
+												"format": "dat-time",
+												"description": "The date of the DT Version"
+											},
+											"description": {
+												"type": "string",
+												"description": "The DT version description"
+											},
+											"distribution": {
+												"type": "string",
+												"description": "The distribution that is targeted for the dt, should be one of the following values: [\"External Use\", \"SaaS\", \"Internal User\", \"Shared With Open Source\"]",
+												"enum": [
+													"External Use",
+													"SaaS",
+													"Internal User",
+													"Shared With Open Source"
+												]
+											},
+											"main_operating_system": {
+												"type": "object",
+												"properties": {
+													"name": {
+														"type": "string",
+														"description": "The name of the os"
+													},
+													"version": {
+														"type": "string",
+														"description": "The version of the os"
+													},
+													"patch_level": {
+														"type": "string",
+														"description": "The patch level of the os"
+													},
+													"service_pack": {
+														"type": "string",
+														"description": "The service pack of the os"
+													},
+													"kernel": {
+														"type": "string",
+														"description": "The kernel"
+													},
+													"kernel_version": {
+														"type": "string",
+														"description": "The kernel version"
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"title": "success",
+									"oneOf": [{
+											"type": "object",
+											"properties": {
+												"status_code": {
+													"$ref": "../../schemas/common/status_code.json"
+												},
+												"data": {
+													"$ref": "../../schemas/digital_twins/dts_versions_general_information.json"
+												}
+											}
+										},
+										{
+											"$ref": "../../schemas/common/error.json"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/dts/authorized": {
+			"get": {
+				"tags": [
+					"Digital Twins"
+				],
+				"summary": "Get Authorized DTs",
+				"description": "This API is used for internal purposes in order to get the authorized dts based on the optional filtered list of dt ids and an optional filtered list of dt permissions. For example if there is a need to check which dts are authorized for the \"dt_work\" or \"dt_manager\" permissions - just send a list of this values and just the relevant dts will be returned in the result.",
+				"operationId": "GetAuthorizedDTsDevelopContractOpenNODOCUMENT",
+				"parameters": [{
+						"name": "dt_ids",
+						"in": "query",
+						"description": "A list of dt ids to filter on",
+						"schema": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						}
+					},
+					{
+						"name": "permissions",
+						"in": "query",
+						"description": "A list of permissions to filter on",
+						"schema": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "List of groups",
+						"content": {
+							"application/json": {
+								"schema": {
+									"title": "success",
+									"oneOf": [{
+											"type": "object",
+											"properties": {
+												"status_code": {
+													"$ref": "../../schemas/common/status_code.json"
+												},
+												"data": {
+													"$ref": "../../schemas/digital_twins/dts_authorized.json"
+												}
+											}
+										},
+										{
+											"$ref": "../../schemas/common/error.json"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/dts/authorized_users": {
+			"get": {
+				"tags": [
+					"Digital Twins"
+				],
+				"summary": "Get Authorized DTs Users",
+				"description": "Get Authorized DTs Users",
+				"operationId": "GetAuthorizedDTsUsersDevelopContractOpenNODOCUMENT",
+				"parameters": [{
+					"name": "dt_ids",
+					"in": "query",
+					"description": "A list of dt ids to get all the users that are authoized do these DTs",
+					"schema": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					},
+					"required": true
+				}],
+				"responses": {
+					"200": {
+						"description": "List of groups",
+						"content": {
+							"application/json": {
+								"schema": {
+									"title": "success",
+									"oneOf": [{
+											"type": "object",
+											"properties": {
+												"status_code": {
+													"$ref": "../../schemas/common/status_code.json"
+												},
+												"data": {
+													"$ref": "../../schemas/digital_twins/dts_authorized_users.json"
+												}
+											}
+										},
+										{
+											"$ref": "../../schemas/common/error.json"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/dts/fs_info": {
+			"post": {
+				"tags": [
+					"Digital Twins"
+				],
+				"summary": "Get DT File System",
+				"description": "This API should fetch the File System Information object location that stored on the disk so other microservices like Unknown and Knows can get it and the file system information in order to do the scans",
+				"operationId": "GetDTFileSystemDevelopContractOpenNODOCUMENT",
+				"parameters": [{
+					"name": "dt_id",
+					"in": "query",
+					"description": "The dt id",
+					"schema": {
+						"type": "string"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "List of groups",
+						"content": {
+							"application/json": {
+								"schema": {
+									"title": "success",
+									"oneOf": [{
+											"type": "object",
+											"properties": {
+												"status_code": {
+													"$ref": "../../schemas/common/status_code.json"
+												},
+												"data": {
+													"$ref": "../../schemas/digital_twins/dts_fs_info.json"
+												}
+											}
+										},
+										{
+											"$ref": "../../schemas/common/error.json"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"deprecated": false
+			}
+		}
+	}
+}
