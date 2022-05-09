@@ -102,6 +102,25 @@
     },
     "/groups/remove_group": {
       "$ref": "./paths/user_management/group_management_paths.json#/paths/~1groups~1remove_group"
+    },
+    "/test": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./paths/user_management/user_management_paths.json#/components/schemas/User"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-test"
+      }
     }
   }
 }
